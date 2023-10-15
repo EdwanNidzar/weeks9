@@ -13,6 +13,14 @@
     {
       "name": "Auth",
       "description": "Authentication routes"
+    },
+    {
+      "name": "Movies",
+      "description": "Movie related routes"
+    },
+    {
+      "name": "Users",
+      "description": "User related routes"
     }
   ],
   "paths": {
@@ -104,6 +112,460 @@
                   }
                 },
                 "required": ["email", "password"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/movies": {
+      "get": {
+        "tags": ["Movies"],
+        "summary": "Get all movies",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "example": 1
+                          },
+                          "title": {
+                            "type": "string",
+                            "example": "Lion King"
+                          },
+                          "genres": {
+                            "type": "string",
+                            "example": "Film anak-anak|Drama"
+                          },
+                          "year": {
+                            "type": "string",
+                            "example": "2019"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-10-14T17:42:26.133Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-10-14T17:42:26.133Z"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "title",
+                          "genres",
+                          "year",
+                          "createdAt",
+                          "updatedAt"
+                        ]
+                      }
+                    },
+                    "totalItems": {
+                      "type": "integer",
+                      "example": 5
+                    },
+                    "currentPage": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "totalPages": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/movies-page": {
+      "get": {
+        "tags": ["Movies"],
+        "summary": "Get all movies",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Page number for pagination",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "example": 1
+                          },
+                          "title": {
+                            "type": "string",
+                            "example": "Lion King"
+                          },
+                          "genres": {
+                            "type": "string",
+                            "example": "Film anak-anak|Drama"
+                          },
+                          "year": {
+                            "type": "string",
+                            "example": "2019"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-10-14T17:42:26.133Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-10-14T17:42:26.133Z"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "title",
+                          "genres",
+                          "year",
+                          "createdAt",
+                          "updatedAt"
+                        ]
+                      }
+                    },
+                    "totalItems": {
+                      "type": "integer",
+                      "example": 5
+                    },
+                    "currentPage": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "totalPages": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createmovies": {
+      "post": {
+        "tags": ["Movies"],
+        "summary": "Create a new movie",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Jangan"
+                  },
+                  "genres": {
+                    "type": "string",
+                    "example": "Comedy"
+                  },
+                  "year": {
+                    "type": "string",
+                    "example": "2023"
+                  }
+                },
+                "required": ["title", "genres", "year"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "success created movie"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 7
+                        },
+                        "title": {
+                          "type": "string",
+                          "example": "Jangan"
+                        },
+                        "genres": {
+                          "type": "string",
+                          "example": "Comedy"
+                        },
+                        "year": {
+                          "type": "string",
+                          "example": "2023"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2023-10-15T04:34:13.433Z"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2023-10-15T04:34:13.433Z"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "title",
+                        "genres",
+                        "year",
+                        "updatedAt",
+                        "createdAt"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/movies/{id}": {
+      "put": {
+        "tags": ["Movies"],
+        "summary": "Update a movie by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "ID of the movie to update",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Jangan"
+                  },
+                  "genres": {
+                    "type": "string",
+                    "example": "Comedy"
+                  },
+                  "year": {
+                    "type": "string",
+                    "example": "2023"
+                  }
+                },
+                "required": ["title", "genres", "year"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "success updated movie"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Movie not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Movie not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deletemovies/{id}": {
+      "delete": {
+        "tags": ["Movies"],
+        "summary": "Delete a movie by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "ID of the movie to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "success deleted movie"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Movie not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Movie not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "example": 1
+                          },
+                          "email": {
+                            "type": "string",
+                            "example": "nidzardwan@gmail.com"
+                          },
+                          "gender": {
+                            "type": "string",
+                            "example": "Laki-laki"
+                          },
+                          "password": {
+                            "type": "string",
+                            "example": "edwan"
+                          },
+                          "role": {
+                            "type": "string",
+                            "example": "admin"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-10-14T17:48:22.619Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-10-14T17:48:22.619Z"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "email",
+                          "gender",
+                          "password",
+                          "role",
+                          "createdAt",
+                          "updatedAt"
+                        ]
+                      }
+                    },
+                    "totalItems": {
+                      "type": "integer",
+                      "example": 2
+                    },
+                    "currentPage": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "totalPages": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                }
               }
             }
           }
